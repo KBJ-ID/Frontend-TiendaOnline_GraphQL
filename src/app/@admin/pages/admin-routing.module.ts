@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from '@core/guards/admin.guard';
 import { AdminComponent } from './admin.component';
 
 
 const routes: Routes = [
   {
-    path: 'admin', component: AdminComponent, children: [
+    path: 'admin', component: AdminComponent, canActivateChild: [AdminGuard], children: [
       {
         path: '', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },

@@ -7,10 +7,16 @@ const routes: Routes = [
   {
     path: '', component: PublicComponent, children: [
       {
-        path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      },
+      {
+        path: 'login', loadChildren: () => import('./forms/login/login.module').then(m => m.LoginModule)
+      },
+      {
+        path: 'register', loadChildren: () => import('./forms/register/register.module').then(m => m.RegisterModule)
       },
     ]
   }
