@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IRegisterForm, IResultRegister } from '@core/interfaces/register.interface';
 import { UsersService } from '@core/services/users.service';
 import { basicAlert } from '@shared/alerts/toasts';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
     password: '',
     birthday: ''
   };
-  constructor(private api: UsersService) { }
+  constructor(private api: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     const data = new Date();
@@ -43,6 +44,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
       basicAlert(TYPE_ALERT.SUCCESS, result.message);
+      this.router.navigate(['/login']);
     });
   }
 }

@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
     //   console.log(result);
     // });
 
-    // this.usersApi.getUsers().subscribe(result =>{
-    //   console.log(result); // { "users": { status messages users: []}}
-    // });
+    this.usersApi.getUsers(7, 1).subscribe(result =>{
+      console.log(result); // { "users": { status messages users: []}}
+    });
 
     // this.auth.getMe().subscribe(result =>{
     //   console.log(result); // { "me": { status messages user: {}}}

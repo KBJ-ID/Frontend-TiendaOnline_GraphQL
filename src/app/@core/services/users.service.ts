@@ -15,8 +15,8 @@ export class UsersService extends ApiService{
     super(apollo);
    }
 
-  getUsers() {
-    return this.get(USER_LIST_QUERY, {include: true}).pipe(map((result:any) => {
+  getUsers(page: number = 1, itemsPage: number = 20) {
+    return this.get(USER_LIST_QUERY, {include: true, itemsPage, page}).pipe(map((result:any) => {
       return result.users;
     }));
   }
@@ -27,7 +27,7 @@ export class UsersService extends ApiService{
         user,
         include: false
       }).pipe(
-      map((result: any) =>{
+      map((result: any) => {
         return result.register;
       })
     );
