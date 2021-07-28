@@ -15,7 +15,7 @@
                     [ngClass]="{'is-valid': name.valid, 'is-invalid': name.invalid}" required />
                 <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
                     <div *ngIf="name.errors.required">
-                        Introduzca una nombre por favor
+                        Introduzca un nombre por favor
                     </div>
                 </div>
 
@@ -33,8 +33,7 @@
                 <label for="email"><b>Email</b></label>
                 <input type="email" placeholder="Introduzca su email" name="email" #email="ngModel"
                     [(ngModel)]="register.email" class="form-control"
-                    [ngClass]="{'is-valid': email.valid, 'is-invalid': email.invalid}"
-                    pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+                    [ngClass]="{'is-valid': email.valid, 'is-invalid': email.invalid}" [pattern]="emailPattern"
                     required />
 
                 <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">

@@ -1,2 +1,2 @@
 <app-table-pagination [query]="query" [context]="context" [itemsPage]="itemsPage" [resultData]="resultData"
-    [include]="include" [tableColumns]="columns"></app-table-pagination>
+    [include]="include" [tableColumns]="columns" (manageItem)="takeAction($event)"></app-table-pagination>

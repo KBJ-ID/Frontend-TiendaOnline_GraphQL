@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { USER_LIST_QUERY } from '@graphql/operations/query/user';
 import { DocumentNode } from 'graphql';
 import { TablePaginationService } from './table-pagination.service';
-import {IInfoPage, IResultData} from '@core/interfaces/result-data.interface';
+import { IInfoPage, IResultData } from '@core/interfaces/result-data.interface';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
@@ -20,8 +20,10 @@ export class TablePaginationComponent implements OnInit {
   @Input() include = true;
   @Input() resultData: IResultData;
   @Input() tableColumns: Array<ITableColumns> = undefined;
+  @Output() manageItem = new EventEmitter<Array<any>>();
   infoPage: IInfoPage;
   data$: Observable<any>;
+  
   constructor(private service: TablePaginationService) { }
 
   ngOnInit(): void {
@@ -56,12 +58,17 @@ export class TablePaginationComponent implements OnInit {
         this.infoPage.total = data.info.total;
         return data[this.resultData.listKey];
       }
-    ));
+      ));
   }
 
   changePage() {
     console.log(this.infoPage.page);
     this.loadData();
+  }
+
+  manageAction(action: string, data: any) {
+    this.manageItem.emit([action, data]);
+    console.log(action, data);
   }
 
 }
